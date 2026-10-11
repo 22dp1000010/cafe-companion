@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Companion</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="header">
+                <h1>☕ Café Companion</h1>
+                <div class="user-section">
+                    <input type="text" id="userId" placeholder="Enter User ID" value="user_001">
+                    <button id="setUserBtn">Set User</button>
+                </div>
+            </div>
+
+            <div class="section wait-time-section">
+                <h3>⏱️ Wait Time</h3>
+                <div id="waitTimeDisplay">
+                    <p>Estimated: <strong id="waitMinutes">--</strong> minutes</p>
+                    <p>Queue: <span id="queueSize">0</span> orders</p>
+                </div>
+                <button id="refreshWaitBtn" class="btn-secondary">Refresh</button>
+            </div>
+
+            <div class="section interests-section">
+                <h3>💬 Find Friends</h3>
+                <div>
+                    <input type="text" id="interestsInput" placeholder="e.g., hiking, coding, photography" value="hiking, photography">
+                    <button id="submitInterestsBtn" class="btn-primary">Share Interests</button>
+                </div>
+                <div id="matchesDisplay" class="matches-list">
+                    <p id="noMatches" style="color: #666; font-size: 0.9em;">No matches yet</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="chat-section">
+                <div id="chatMessages" class="chat-messages">
+                    <div class="message bot-message">
+                        <p>👋 Welcome to Café Companion! I'm here to help you order, check wait times, and meet fellow café lovers. What can I get for you today?</p>
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Type your message...">
+                    <button id="sendBtn" class="btn-primary">Send</button>
+                </div>
+            </div>
+
+            <div class="order-summary-section">
+                <h3>📋 Order Summary</h3>
+                <div id="orderSummary" class="order-summary">
+                    <p style="color: #666;">No active orders</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
