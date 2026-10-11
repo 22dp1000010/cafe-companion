@@ -1,4 +1,4 @@
-import google.generativeai as genai
+from google import genai
 from app.config import settings
 import json
 from typing import Optional
@@ -8,9 +8,9 @@ class GeminiClient:
     def __init__(self):
         if not settings.gemini_api_key:
             raise ValueError("GEMINI_API_KEY not configured")
-        genai.configure(api_key=settings.gemini_api_key)
-        # Use gemini-pro which is the standard free-tier model
-        self.model = genai.GenerativeModel("gemini-pro")
+        self.client = genai.Client(api_key=settings.gemini_api_key)
+        # Use gemini-2.5-flash (latest available model)
+        self.model_id = "gemini-2.5-flash"
 
     def chat_with_recommendations(
         self,
@@ -46,7 +46,10 @@ Respond conversationally and helpfully. If the customer is ordering, include a J
 Always provide personalized recommendations based on their preferences and history."""
 
         try:
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(
+                model=self.model_id,
+                contents=prompt
+            )
             response_text = response.text
 
             # Try to extract order intent from response
