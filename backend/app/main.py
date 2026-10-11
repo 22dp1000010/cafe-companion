@@ -18,6 +18,12 @@ app.include_router(matching.router)
 
 # Mount static files (frontend)
 frontend_path = os.path.join(os.path.dirname(__file__), "..", "..", "frontend")
+# Fallback for docker/cloud run
+if not os.path.exists(frontend_path):
+    frontend_path = "/app/frontend"
+if not os.path.exists(frontend_path):
+    frontend_path = os.path.join(os.path.dirname(__file__), "..", "frontend")
+
 if os.path.exists(frontend_path):
     app.mount("/static", StaticFiles(directory=frontend_path), name="static")
 
