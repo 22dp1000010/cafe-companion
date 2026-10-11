@@ -1,11 +1,16 @@
-import firebase_admin
-from firebase_admin import credentials, firestore, messaging
 from app.config import settings
 import os
 from typing import Optional
 
-_db: Optional[firestore.client] = None
-_messaging: Optional[messaging.Client] = None
+_db = None
+_messaging = None
+
+try:
+    import firebase_admin
+    from firebase_admin import credentials, firestore, messaging
+    FIREBASE_AVAILABLE = True
+except ImportError:
+    FIREBASE_AVAILABLE = False
 
 
 class FirebaseNotConfiguredError(Exception):
