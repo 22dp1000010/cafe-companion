@@ -9,7 +9,8 @@ class GeminiClient:
         if not settings.gemini_api_key:
             raise ValueError("GEMINI_API_KEY not configured")
         genai.configure(api_key=settings.gemini_api_key)
-        self.model = genai.GenerativeModel("gemini-1.5-flash")
+        # Use gemini-pro which is the standard free-tier model
+        self.model = genai.GenerativeModel("gemini-pro")
 
     def chat_with_recommendations(
         self,
